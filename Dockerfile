@@ -11,13 +11,16 @@ wget https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_
 dpkg -i dumb-init_*.deb && rm -f dumb-init_*.deb && \
 apt-get clean && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-RUN yarn global add puppeteer@1.20.0 && \
+RUN yarn global add puppeteer@5.5.0 && \
     yarn global add sanitize-filename@1.6.3 && \
     yarn global add pdf-merger-js@3.0.5 && yarn cache clean
 
 ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules:${NODE_PATH}"
 
 ENV LANG="C.UTF-8"
+
+RUN yarn global add extract-numbers@1.0.5 \
+    && yarn global add log-timestamp@0.3.0 && yarn cache clean
 
 WORKDIR /app
 
